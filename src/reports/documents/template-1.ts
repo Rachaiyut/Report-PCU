@@ -68,9 +68,27 @@ const villageOne = [
     height: '96.00',
     nutrition: 'นน.ค่อนข้างน้อย',
   },
-]; 
+];
 
 const villageTwo = [
+  {
+    fullName: 'เด็กหญิงอรวรรณ ใจดี',
+    houseId: '112',
+    lastestDate: '28/02/2567',
+    ageCheck: 9,
+    weight: '6.50',
+    height: '65.00',
+    nutrition: 'นน.ค่อนข้างน้อย',
+  },
+  {
+    fullName: 'เด็กหญิงอรวรรณ ใจดี',
+    houseId: '112',
+    lastestDate: '28/02/2567',
+    ageCheck: 9,
+    weight: '6.50',
+    height: '65.00',
+    nutrition: 'นน.ค่อนข้างน้อย',
+  },
   {
     fullName: 'เด็กหญิงอรวรรณ ใจดี',
     houseId: '112',
@@ -259,11 +277,14 @@ const styles: StyleDictionary = {
     bold: true,
   },
   h2: {
-    fontSize: 10,
-  },
-  h3: {
     fontSize: 11,
   },
+  h3: {
+    fontSize: 10,
+  },
+  normalText: {
+    font: 'Roboto'
+  }
 };
 
 export const templateOne = (): TDocumentDefinitions => {
@@ -273,37 +294,56 @@ export const templateOne = (): TDocumentDefinitions => {
     },
     pageSize: 'A4',
     footer: function (currentPage, pageCount) {
-      return {
-        columns: [
+      return [
+        [
           {
-            text: 'หมายเหตุ : ',
-            alignment: 'left',
-            width: '*',
-            style: ['h2', 'bold'],
-          },
-          {
-            text: `หน้า ${currentPage} / ${pageCount}`,
-            alignment: 'right',
-            width: 'auto',
-            style: ['h2', 'bold'],
+            canvas: [
+              {
+                type: 'line',
+                x1: 0,
+                y1: 5,
+                x2: 515,
+                y2: 5,
+                lineWidth: 1,
+              },
+            ],
+            margin: [40, 0, 40, 0],
           },
         ],
-        margin: [40, 0],
-      };
+        {
+          columns: [
+            {
+              text: 'หมายเหตุ : ',
+              alignment: 'left',
+              width: '*',
+              style: ['h3', 'bold'],
+            },
+            {
+              text: `หน้า ${currentPage} / ${pageCount}`,
+              alignment: 'right',
+              width: 'auto',
+              style: ['h3', 'bold'],
+            },
+          ], 
+          margin: [45, 4, 45, 0],
+        },
+      ];
     },
     content: [
       {
         columns: [
           {
-            text: 'รายชื่อเด็กที่ได้รับการชั้งน้ำหนักเเละพบภาวะโภชนาการบกพร่อง\n',
+            text: 'รายชื่อเด็กที่ได้รับการชั่งน้ำหนักเเละพบภาวะโภชนาการบกพร่อง\n',
             style: 'h1',
+            alignment: 'left',
             width: '*',
           },
           {
             text: 'งวดที่ 2 : 1 มกราคม 30 มีนาคม ปี พ.ศ. 2567',
-            style: 'h2',
+            fontSize: 9.5,
             alignment: 'right',
             width: 'auto',
+            margin: [0, 2],
           },
         ],
       },
@@ -311,12 +351,12 @@ export const templateOne = (): TDocumentDefinitions => {
         columns: [
           {
             text: 'สถานบริการ(สถานีอนามัย/PCU): โรงพยาบาลสงเสริมสุขภาพตำบลศาลาด่าน\n ต. ศาลาด่าน อ. เกาะลันตา จ.กระบี่\n',
-            style: 'h2',
+            style: 'h3',
             width: '*',
           },
           {
             text: 'ที่อยู่จริง (0,1,3)\n',
-            style: 'h2',
+            style: 'h3',
             alignment: 'right',
             width: 'auto',
           },
@@ -328,11 +368,11 @@ export const templateOne = (): TDocumentDefinitions => {
         columns: [
           {
             text: `ชื่อผู้ออกรายงาน นางสาวสมใจ มั่นคง \n`,
-            style: 'h2',
+            style: 'h3',
           },
           {
             text: 'วันที่ออกรายงาน  3 มี.ค. 2567',
-            style: 'h2',
+            style: 'h3',
             alignment: 'right',
           },
         ],
@@ -344,14 +384,14 @@ export const templateOne = (): TDocumentDefinitions => {
         layout: {
           fillColor: function (rowIndex) {
             if (rowIndex === 0) {
-              return  "#CCCCCC" // Set Color in header
+              return '#CCCCCC'; // Set Color in header
             }
 
-            return null
+            return null;
           },
           hLineWidth: function (i, node) {
             if (i === 0 || i === 1) {
-              return 1; 
+              return 1;
             }
 
             if (node.table.body.includes) {
@@ -359,15 +399,15 @@ export const templateOne = (): TDocumentDefinitions => {
 
             return 0.05;
           },
-          hLineColor: function(i, node) {
+          hLineColor: function (i, node) {
             if (i === 0 || i === 1) {
-              return 'black'
+              return 'black';
             }
 
-            return "#A9A9A9";
+            return '#A9A9A9';
           },
           vLineWidth: function (i) {
-            return 0; 
+            return 0;
           },
           paddingLeft: function (i) {
             return i === 0 ? 8 : 4;
@@ -389,22 +429,49 @@ export const templateOne = (): TDocumentDefinitions => {
           body: [
             // Village One
             [
-              { text: 'ลำดับ', alignment: 'center', padding: [0, 4] },
-              { text: 'ชื่อ-นามสกุล', padding: [0, 4] },
-              { text: 'บ้านเลขที่', alignment: 'center', padding: [0, 4] },
+              {
+                text: 'ลำดับ',
+                alignment: 'center',
+                padding: [0, 2],
+                margin: [0, 6],
+              },
+              {
+                text: 'ชื่อ-นามสกุล',
+                padding: [0, 2],
+                margin: [0, 6],
+              },
+              {
+                text: 'บ้านเลขที่',
+                alignment: 'center',
+                padding: [0, 2],
+                margin: [0, 6],
+              },
               {
                 text: 'วันที่ตรวจล่าสุด\nงวดนั้น',
                 alignment: 'center',
-                padding: [0, 4],
+                padding: [0, 2],
               },
               {
                 text: 'อายุนับถึง\nวันตรวจ (เดือน)',
                 alignment: 'center',
-                padding: [0, 4],
+                padding: [0, 2],
               },
-              { text: 'น้ำหนัก\n(กก.)', alignment: 'center', padding: [0, 4] },
-              { text: 'ส่วนสูง\n(ซม.)', alignment: 'center', padding: [0, 4] },
-              { text: 'ภาวะโภชนาการ', alignment: 'center', padding: [0, 4] },
+              {
+                text: 'น้ำหนัก\n(กก.)',
+                alignment: 'center',
+                padding: [0, 2],
+              },
+              {
+                text: 'ส่วนสูง\n(ซม.)',
+                alignment: 'center',
+                padding: [0, 2],
+              },
+              {
+                text: 'ภาวะโภชนาการ',
+                alignment: 'center',
+                padding: [0, 2],
+                margin: [0, 6]
+              },
             ],
             [
               {
@@ -448,7 +515,7 @@ export const templateOne = (): TDocumentDefinitions => {
                 colSpan: 8,
                 alignment: 'left',
                 bold: true,
-                margin: [3, 10, 3, 6],
+                margin: [3, 16, 3, 6],
               },
               {},
               {},
