@@ -15,4 +15,14 @@ export class ReportsController {
     pdfDoc.pipe(response);
     pdfDoc.end();
   }
+
+  @Get('template-1')
+  async getReportOne(@Res() response: Response) {
+    const pdfDoc = await this.reportsService.getReportOne();
+
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Report 1';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
 }
