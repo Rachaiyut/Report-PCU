@@ -31,7 +31,17 @@ export class ReportsController {
     const pdfDoc = await this.reportsService.getReportTwo();
 
     response.setHeader('Content-Type', 'application/pdf');
-    pdfDoc.info.Title = 'Report 1';
+    pdfDoc.info.Title = 'Report 2';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
+
+  @Get('template-3')
+  async getReportThree(@Res() response: Response) {
+    const pdfDoc = await this.reportsService.getReportThree();
+
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Report 3';
     pdfDoc.pipe(response);
     pdfDoc.end();
   }

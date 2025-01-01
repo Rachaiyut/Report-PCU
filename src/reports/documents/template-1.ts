@@ -269,6 +269,15 @@ const villageTwo = [
     height: '65.00',
     nutrition: 'นน.ค่อนข้างน้อย',
   },
+  {
+    fullName: 'เด็กหญิงอรวรรณ ใจดี',
+    houseId: '112',
+    lastestDate: '28/02/2567',
+    ageCheck: 9,
+    weight: '6.50',
+    height: '65.00',
+    nutrition: 'นน.ค่อนข้างน้อย',
+  },
 ];
 
 const styles: StyleDictionary = {
@@ -515,7 +524,7 @@ export const templateOne = (): TDocumentDefinitions => {
                 colSpan: 8,
                 alignment: 'left',
                 bold: true,
-                margin: [3, 16, 3, 6],
+                margin: [3, 14, 3, 6],
               },
               {},
               {},
