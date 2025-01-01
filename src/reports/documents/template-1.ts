@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type {
   Content,
   StyleDictionary,
@@ -292,8 +293,12 @@ const styles: StyleDictionary = {
     fontSize: 10,
   },
   normalText: {
-    font: 'Roboto'
-  }
+    font: 'Roboto',
+  },
+  tableBody: {
+    alignment: 'center',
+    margin: [0, 2],
+  },
 };
 
 export const templateOne = (): TDocumentDefinitions => {
@@ -333,7 +338,7 @@ export const templateOne = (): TDocumentDefinitions => {
               width: 'auto',
               style: ['h3', 'bold'],
             },
-          ], 
+          ],
           margin: [45, 4, 45, 0],
         },
       ];
@@ -479,7 +484,7 @@ export const templateOne = (): TDocumentDefinitions => {
                 text: 'ภาวะโภชนาการ',
                 alignment: 'center',
                 padding: [0, 2],
-                margin: [0, 6]
+                margin: [0, 6],
               },
             ],
             [
@@ -499,24 +504,23 @@ export const templateOne = (): TDocumentDefinitions => {
               {},
             ],
             ...villageOne.map((patient, count) => [
-              { text: count + 1, alignment: 'center', margin: [0, 2] },
+              { text: count + 1, style: 'tableBody' },
               { text: patient.fullName, margin: [0, 2] },
-              { text: patient.houseId, alignment: 'center', margin: [0, 2] },
+              { text: patient.houseId, style: 'tableBody' },
               {
                 text: patient.lastestDate,
                 alignment: 'center',
                 margin: [0, 2],
               },
-              { text: patient.ageCheck, alignment: 'center', margin: [0, 2] },
-              { text: patient.weight, alignment: 'center', margin: [0, 2] },
-              { text: patient.height, alignment: 'center', margin: [0, 2] },
+              { text: patient.ageCheck, style: 'tableBody' },
+              { text: patient.weight, style: 'tableBody' },
+              { text: patient.height, style: 'tableBody' },
               {
                 text: patient.nutrition,
                 alignment: 'left',
                 margin: [0, 2],
               },
             ]),
-
             // Village Two
             [
               {
@@ -535,17 +539,17 @@ export const templateOne = (): TDocumentDefinitions => {
               {},
             ],
             ...villageTwo.map((patient, count) => [
-              { text: count + 1, alignment: 'center', margin: [0, 2] },
+              { text: count + 1, style: 'tableBody' },
               { text: patient.fullName, margin: [0, 2] },
-              { text: patient.houseId, alignment: 'center', margin: [0, 2] },
+              { text: patient.houseId, style: 'tableBody' },
               {
                 text: patient.lastestDate,
                 alignment: 'center',
                 margin: [0, 2],
               },
-              { text: patient.ageCheck, alignment: 'center', margin: [0, 2] },
-              { text: patient.weight, alignment: 'center', margin: [0, 2] },
-              { text: patient.height, alignment: 'center', margin: [0, 2] },
+              { text: patient.ageCheck, style: 'tableBody' },
+              { text: patient.weight, style: 'tableBody' },
+              { text: patient.height, style: 'tableBody' },
               {
                 text: patient.nutrition,
                 alignment: 'left',
