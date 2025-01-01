@@ -25,4 +25,14 @@ export class ReportsController {
     pdfDoc.pipe(response);
     pdfDoc.end();
   }
+
+  @Get('template-2')
+  async getReportTwo(@Res() response: Response) {
+    const pdfDoc = await this.reportsService.getReportTwo();
+
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Report 1';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
 }

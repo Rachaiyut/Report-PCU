@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { PrinterService } from 'src/printer/printer.service';
 import { billReport } from './documents/bill.report';
 import { templateOne } from './documents/template-1';
+import { templateTwo } from './documents/template-2';
 
 @Injectable()
 export class ReportsService {
@@ -16,6 +17,12 @@ export class ReportsService {
 
   async getReportOne(): Promise<PDFKit.PDFDocument> {
     const docDefinition = templateOne();
+
+    return this.printer.creatReportPdf(docDefinition);
+  }
+
+  async getReportTwo() {
+    const docDefinition = templateTwo();
 
     return this.printer.creatReportPdf(docDefinition);
   }
